@@ -42,4 +42,4 @@ build
 http/http-client.env.json
 /infra/.env
 /src/main/resources/application-dev.properties
-/src/main/resources/application-prd.properties
+/src/main/resources/application-prod.properties
