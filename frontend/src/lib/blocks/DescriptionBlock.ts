@@ -11,9 +11,10 @@ export default class DescriptionBlock extends Block<string> {
 
   constructor(
     id: number,
+    position: number | null,
     content: string = "<p>Descripción.</p>",
     editable: boolean = true,
   ) {
-    super(id, content, editable);
+    super(id, position, content, editable);
   }
 }
