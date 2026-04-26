@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Barnebok';
+    src: url('BarnebokLight.eot'); /* IE9 Compat Modes */
+    src: url('BarnebokLight.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('BarnebokLight.woff') format('woff'), /* Modern Browsers */
+         url('BarnebokLight.ttf') format('truetype'); /* Safari, Android, iOS */
+    font-style: normal;
+    font-weight: 300;
+    text-rendering: optimizeLegibility;
+}

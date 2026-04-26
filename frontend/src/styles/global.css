@@ -1,0 +1,70 @@
+@tailwind components;
+@tailwind utilities;
+@tailwind base;
+@tailwind variants;
+
+:root {
+  --color-primary: #1e1e1e;
+  --color-on-primary: white;
+  --color-surface: white;
+  --color-on-surface: black;
+  --color-border: #a7daff;
+
+  --max-width-desktop: 1200px;
+
+  --space-md: 2.25em;
+
+  --font-size-md: 1em;
+  --font-size-lg: 1.25em;
+}
+
+body {
+  width: auto;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 150px;
+  height: 150px;
+  background: purple;
+  border-radius: 30px;
+}
+
+.ProseMirror {
+  @apply w-full border-b-2 border-transparent focus:outline-none focus:border-b-2 focus:border-neutral;
+}
+
+.ProseMirror:has(> p:first-child.is-empty){
+  @apply border-neutral;
+}
+
+.block-editor {
+  @apply w-full max-w-screen-md;
+}
+
+.post-title {
+  * {
+    @apply text-3xl sm:text-6xl font-bold h-fit;
+  }
+}
+
+pre {
+  line-height: 1.5;
+  overflow-x: auto;
+  @apply rounded-b-md bg-blue-50 border border-neutral p-4 pr-16;
+}
+
+pre code {
+  color: inherit;
+  padding: 0;
+  background: none;
+}
+
+.RootMenu {
+  @apply outline-none w-fit h-fit;
+}

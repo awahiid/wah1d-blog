@@ -1,0 +1,9 @@
+### Obtener token de Supabase
+POST https://{{supabase_project}}.supabase.co/auth/v1/token?grant_type=password
+Content-Type: application/json
+apikey: {{supabase_api_key}}
+
+{
+  "email": "{{user.email}}",
+  "password": "{{user.password}}"
+}
