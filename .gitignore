@@ -1,2 +1,3 @@
 backend-spring
 frontend/.env.local
+.env

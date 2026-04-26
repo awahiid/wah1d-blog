@@ -18,7 +18,8 @@ class StorageService(
     fun uploadMedia(file: MultipartFile, imagePath: String?) {
         try {
             val bytes = file.bytes
-            supabaseClient.upload(mediaBucket, imagePath.toString(), bytes, file.contentType)
+            require(file.contentType != null) { "File type is null" }
+            supabaseClient.upload(mediaBucket, imagePath.toString(), bytes, file.contentType!!)
         } catch (e: IOException) {
             throw IllegalStateException("Failed to read file bytes", e)
         }

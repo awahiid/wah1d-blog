@@ -1,7 +1,10 @@
+import 'dotenv/config';
 import { defineConfig } from '@hey-api/openapi-ts';
 
+const API_URL = process.env.OPENAPI_URL;
+
 export default defineConfig({
-    input: 'http://localhost:8080/v3/api-docs',
+    input: `${API_URL}/v3/api-docs`,
     output: './src/api',
     plugins: [
         {
