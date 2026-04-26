@@ -14,12 +14,12 @@ export default class DateBlock extends Block<DateContent> {
   readonly type: POST_BLOCK_TYPE = POST_BLOCK_TYPE.DATE;
   readonly icon: IconType = MdOutlineDateRange;
 
-  constructor(id: number, content?: DateContent, editable: boolean = true) {
+  constructor(id: number, position: number | null, content?: DateContent, editable: boolean = true) {
     const newContent: DateContent = {
       date: new Date().toDateString(),
       html: `<p>${formatDate(new Date())}</p>`,
     };
 
-    super(id, content ?? newContent, editable);
+    super(id, position, content ?? newContent, editable);
   }
 }

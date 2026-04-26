@@ -8,7 +8,7 @@ export default class CoverBlock extends Block<string[]> {
   readonly type: POST_BLOCK_TYPE = POST_BLOCK_TYPE.COVER;
   readonly icon: IconType = IoMdImage;
 
-  constructor(id: number, content: string[] = [], editable: boolean = true) {
-    super(id, content, editable);
+  constructor(id: number, position: number | null, content: string[] = [], editable: boolean = true) {
+    super(id, position, content, editable);
   }
 }

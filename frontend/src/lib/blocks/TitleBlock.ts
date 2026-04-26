@@ -11,9 +11,10 @@ export default class TitleBlock extends Block<string> {
 
   constructor(
     id: number,
+    position: number,
     content: string = "<p>Título del post.</p>",
     editable: boolean = true,
   ) {
-    super(id, content, editable);
+    super(id, position, content, editable);
   }
 }

@@ -18,7 +18,7 @@ export class BlockCatalog {
   catalog: BlockCatalogEntry[] = [];
 
   addEntry(blockEntry: BlockEntry<SerializableContent, Block<SerializableContent>>) {
-    const temporalBlock = new blockEntry.block(0);
+    const temporalBlock = new blockEntry.block(0, 0);
     this.catalog.push({
       id: this.catalog.length + 1,
       text: temporalBlock.name,
