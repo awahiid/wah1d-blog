@@ -22,8 +22,8 @@ class SecurityConfig{
     @Value("\${spring.security.oauth2.resourceserver.jwt.issuer-uri}")
     lateinit var issuerURI: String
 
-    @Value("\${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
-    lateinit var jwtSetURI: String
+    @Value("\${frontend.url}")
+    lateinit var frontendURL: String
 
     @Bean
     fun jwtDecoder(): JwtDecoder? = JwtDecoders.fromIssuerLocation(issuerURI)
@@ -31,7 +31,7 @@ class SecurityConfig{
     @Bean
     fun corsConfigurationSource(): CorsConfigurationSource {
         val configuration = CorsConfiguration()
-        configuration.allowedOrigins = mutableListOf("http://localhost:3000")
+        configuration.allowedOrigins = mutableListOf(frontendURL)
         configuration.allowedMethods = mutableListOf("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
         configuration.allowedHeaders = mutableListOf("*")
         configuration.allowCredentials = true
@@ -45,7 +45,7 @@ class SecurityConfig{
         http
             .authorizeHttpRequests { auth ->
                 auth
-                    .requestMatchers({ req -> req.requestURI.contains("public") }).permitAll()
+                    .requestMatchers("/api/v1/posts/public/**").permitAll()
                     .requestMatchers( "/media/**", "/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html", "/webjars/**").permitAll()
                     .anyRequest().authenticated()
             }
