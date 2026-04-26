@@ -36,7 +36,7 @@ class SupabaseClient(
 
         val url = "$baseUrl/storage/v1/object/$bucket/$path"
         val response = restTemplate.exchange<ByteArray?>(url, HttpMethod.GET, request, ByteArray::class.java)
-        return response.getBody()
+        return response.getBody()!!
     }
 
     override fun delete(bucket: String, path: String) {

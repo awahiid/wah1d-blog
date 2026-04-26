@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
 import java.rmi.ServerException
 import java.util.*
-import java.util.Map
-import kotlin.collections.MutableMap
 import kotlin.collections.Set
 import kotlin.collections.setOf
 
@@ -17,10 +15,10 @@ class MediaService(
     private val storageService: StorageService,
     private val postRepository: PostRepository
 ) {
-    val allowedTypes: MutableMap<String, Set<String>> = Map.of(
-        "image", setOf("image/jpeg", "image/png", "image/webp", "image/gif"),
-        "video", setOf("video/mp4", "video/webm"),
-        "audio", setOf("audio/mpeg", "audio/ogg")
+    val allowedTypes: Map<String, Set<String>> = mapOf(
+        "image" to setOf("image/jpeg", "image/png", "image/webp", "image/gif"),
+        "video" to setOf("video/mp4", "video/webm"),
+        "audio" to setOf("audio/mpeg", "audio/ogg")
     )
 
     fun uploadMedia(file: MultipartFile, postId: UUID): String {
