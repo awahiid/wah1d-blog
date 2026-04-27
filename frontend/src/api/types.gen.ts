@@ -127,24 +127,24 @@ export type PostDTO = {
 export type PagePostDetails = {
     totalElements?: number;
     totalPages?: number;
+    numberOfElements?: number;
+    pageable?: PageableObject;
+    first?: boolean;
+    last?: boolean;
     size?: number;
     content?: Array<PostDetails>;
     number?: number;
-    pageable?: PageableObject;
     sort?: Array<SortObject>;
-    first?: boolean;
-    last?: boolean;
-    numberOfElements?: number;
     empty?: boolean;
 };
 
 export type PageableObject = {
-    offset?: number;
-    paged?: boolean;
-    pageNumber?: number;
-    pageSize?: number;
-    sort?: Array<SortObject>;
     unpaged?: boolean;
+    pageNumber?: number;
+    paged?: boolean;
+    pageSize?: number;
+    offset?: number;
+    sort?: Array<SortObject>;
 };
 
 /**
