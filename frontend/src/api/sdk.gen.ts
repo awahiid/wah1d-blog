@@ -2,7 +2,7 @@
 
 import { type Client, formDataBodySerializer, type Options as Options2, type TDataShape } from './client';
 import { client } from './client.gen';
-import type { CreatePostData, CreatePostResponses, DeleteMediaData, DeleteMediaErrors, DeleteMediaResponses, GetFilteredPostsData, GetFilteredPostsResponses, GetPostByIdData, GetPostByIdErrors, GetPostByIdResponses, GetPostBySlugData, GetPostBySlugErrors, GetPostBySlugResponses, GetSectionsData, GetSectionsResponses, GetTagsData, GetTagsResponses, GetUserFilteredPostsData, GetUserFilteredPostsResponses, PurgePostData, PurgePostErrors, PurgePostResponses, UpdatePostData, UpdatePostErrors, UpdatePostResponses, UploadMediaData, UploadMediaErrors, UploadMediaResponses } from './types.gen';
+import type { CreatePostData, CreatePostErrors, CreatePostResponses, DeleteMediaData, DeleteMediaErrors, DeleteMediaResponses, GetFilteredPostsData, GetFilteredPostsErrors, GetFilteredPostsResponses, GetPostByIdData, GetPostByIdErrors, GetPostByIdResponses, GetPostBySlugData, GetPostBySlugErrors, GetPostBySlugResponses, GetSectionsData, GetSectionsErrors, GetSectionsResponses, GetTagsData, GetTagsErrors, GetTagsResponses, GetUserFilteredPostsData, GetUserFilteredPostsErrors, GetUserFilteredPostsResponses, PurgePostData, PurgePostErrors, PurgePostResponses, UpdatePostData, UpdatePostErrors, UpdatePostResponses, UploadMediaData, UploadMediaErrors, UploadMediaResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
@@ -25,7 +25,7 @@ export class PostControllerService {
      * Returns a paginated list of the authenticated user's posts filtered by parameters, including deleted and published status.
      */
     public static getUserFilteredPosts<ThrowOnError extends boolean = false>(options?: Options<GetUserFilteredPostsData, ThrowOnError>) {
-        return (options?.client ?? client).get<GetUserFilteredPostsResponses, unknown, ThrowOnError>({
+        return (options?.client ?? client).get<GetUserFilteredPostsResponses, GetUserFilteredPostsErrors, ThrowOnError>({
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/api/v1/post',
             ...options
@@ -38,7 +38,7 @@ export class PostControllerService {
      * Creates a new post for the authenticated user and returns the created post data.
      */
     public static createPost<ThrowOnError extends boolean = false>(options?: Options<CreatePostData, ThrowOnError>) {
-        return (options?.client ?? client).post<CreatePostResponses, unknown, ThrowOnError>({
+        return (options?.client ?? client).post<CreatePostResponses, CreatePostErrors, ThrowOnError>({
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/api/v1/post',
             ...options
@@ -81,7 +81,7 @@ export class PostControllerService {
      * Returns a paginated list of public posts filtered by the provided parameters. Requires authentication.
      */
     public static getFilteredPosts<ThrowOnError extends boolean = false>(options?: Options<GetFilteredPostsData, ThrowOnError>) {
-        return (options?.client ?? client).get<GetFilteredPostsResponses, unknown, ThrowOnError>({ url: '/api/v1/post/public', ...options });
+        return (options?.client ?? client).get<GetFilteredPostsResponses, GetFilteredPostsErrors, ThrowOnError>({ url: '/api/v1/post/public', ...options });
     }
     
     /**
@@ -99,7 +99,7 @@ export class PostControllerService {
      * Retrieves the complete list of tags available in the system.
      */
     public static getTags<ThrowOnError extends boolean = false>(options?: Options<GetTagsData, ThrowOnError>) {
-        return (options?.client ?? client).get<GetTagsResponses, unknown, ThrowOnError>({ url: '/api/v1/post/public/tag', ...options });
+        return (options?.client ?? client).get<GetTagsResponses, GetTagsErrors, ThrowOnError>({ url: '/api/v1/post/public/tag', ...options });
     }
     
     /**
@@ -108,7 +108,7 @@ export class PostControllerService {
      * Retrieves the complete list of sections available in the system.
      */
     public static getSections<ThrowOnError extends boolean = false>(options?: Options<GetSectionsData, ThrowOnError>) {
-        return (options?.client ?? client).get<GetSectionsResponses, unknown, ThrowOnError>({ url: '/api/v1/post/public/section', ...options });
+        return (options?.client ?? client).get<GetSectionsResponses, GetSectionsErrors, ThrowOnError>({ url: '/api/v1/post/public/section', ...options });
     }
     
     /**
