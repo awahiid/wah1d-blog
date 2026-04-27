@@ -13,8 +13,4 @@ import type { ClientOptions as ClientOptions2 } from './types.gen';
  */
 export type CreateClientConfig<T extends ClientOptions = ClientOptions2> = (override?: Config<ClientOptions & T>) => Config<Required<ClientOptions> & T>;
 
-<<<<<<< HEAD
-export const client = createClient(createConfig<ClientOptions2>({ baseUrl: 'http://wah1d-blog-backend.us-east-1.elasticbeanstalk.com' }));
-=======
-export const client = createClient(createConfig<ClientOptions2>({ baseUrl: 'https://wah1d-backend.onrender.com' }));
->>>>>>> main
+export const client = createClient(createConfig<ClientOptions2>({ baseUrl: 'http://localhost:8080' }));
