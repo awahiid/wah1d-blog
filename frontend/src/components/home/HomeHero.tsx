@@ -9,6 +9,7 @@ import Button from '@/components/ui/Button';
 import TitleEditor from '@/components/editor/block-editors/TitleEditor';
 import { createImageURL, formatDate } from '@/utils/utils';
 import { PostDetails } from "@/api";
+import {HomeHeroFallback} from "@/components/home/HomeHeroSection";
 
 export default function HomeHero({post}: {post: PostDetails | undefined}) {
   const router = useRouter();
@@ -22,11 +23,7 @@ export default function HomeHero({post}: {post: PostDetails | undefined}) {
     }
   }, [post]);
 
-  if (!post || !post.covers?.length) return (
-      <div className="flex justify-center items-center w-full sm:flex max-h-[660px] h-[40.8rem] ">
-        No recent post
-      </div>
-  );
+  if (!post || !post.covers?.length) return <HomeHeroFallback text={"No recent post"}/>
 
   const handleCoverChange = () => {
     const currentIndex = post.covers.indexOf(selectedCover);
