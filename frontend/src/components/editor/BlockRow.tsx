@@ -41,7 +41,8 @@ export default function BlockRow({ block, index }: BlockRowBlocks) {
         ref={setNodeRef}
         style={style}
       >
-        <BlockComponent content={block.content} editable={editable} onEdit={(content) => updateContent(content, block.id)}></BlockComponent>
+        <BlockComponent       {...attributes}
+                              {...listeners} content={block.content} editable={editable} onEdit={(content) => updateContent(content, block.id)}></BlockComponent>
         {editable && (
           <SectionRowButtons
             attributes={attributes}

@@ -6,7 +6,7 @@ import LightDangerButton from "@/components/ui/LightDangerButton";
 import { DraggableAttributes } from "@dnd-kit/core";
 import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 import AddBlockMenu from "@/components/editor/AddBlockMenu";
-import { POST_BLOCK_TYPE } from "../../types";
+import { POST_BLOCK_TYPE } from "@/types";
 import { BlockCatalogEntry } from "@/lib/blocks/BlockCatalog";
 
 type SectionRowButtonsProps = {
@@ -27,7 +27,7 @@ export default function SectionRowButtons({
   return (
     <div
       className={
-        "absolute -right-28 h-fit flex justify-around items-center border-l-2 pl-2 border-neutral"
+        "hidden sm:flex absolute -right-28 h-fit  justify-around items-center border-l-2 pl-2 border-neutral"
       }
     >
       <AddBlockMenu onAdd={onAdd} catalog={catalog} />

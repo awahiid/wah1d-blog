@@ -18,6 +18,8 @@ export function ProfileContent({ posts }: { posts: PostDetails[] }) {
 
     return <>
         { loadedPosts.map((post: PostDetails) => <EditPostRow post={post} key={post.id}/>) }
-        <Button className={"my-10 rounded"} onClick={() => redirect('/auth/edit')}> <IoAdd/> New post </Button>
+        <div className={'w-full px-9'}>
+            <Button className={"my-10 sm:w-fit w-full"} onClick={() => redirect('/auth/edit')}> <IoAdd/> New post </Button>
+        </div>
     </>
 }

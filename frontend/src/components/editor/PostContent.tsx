@@ -56,7 +56,7 @@ export default function PostContent() {
           ))}
         </SortableContext>
       </DndContext>
-      <p className={'mx-auto w-full max-w-3xl pt-8 border-t mt-4 border-neutral h-fit text-end'}>Made by Abdel Wahed Mahfoud</p>
+      <p className={'px-9 w-screen max-w-3xl pt-8 mr-0  border-t mt-4 border-neutral h-fit text-end '}>Made by Abdel Wahed Mahfoud</p>
     </div>
   );
 }
