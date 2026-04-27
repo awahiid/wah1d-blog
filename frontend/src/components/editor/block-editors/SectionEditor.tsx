@@ -1,4 +1,5 @@
 import useConfigStore from "@/stores/useConfigStore";
+import {cn} from "@/utils/cn";
 
 
 type SectionEditor = {
@@ -12,7 +13,7 @@ export function SectionEditor({content, editable, onEdit}: SectionEditor) {
 
     return <select
         defaultValue={content ?? ""}
-        className={'w-fit absolute top-9 bg-none font-bold bg-transparent pr-2 outline-none rounded-full appearance-none disabled:opacity-100'}
+        className={cn(!editable && !content ? 'hidden' : '', 'w-fit sm:absolute top-9 bg-none font-bold bg-transparent pr-2 outline-none rounded-full appearance-none disabled:opacity-100')}
         onChange={(e) => onEdit(e.target.value)}
         disabled={!editable}
     >
