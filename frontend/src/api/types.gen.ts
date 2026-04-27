@@ -5,6 +5,28 @@ export type ClientOptions = {
 };
 
 /**
+ * Standard error response used throughout the API.
+ */
+export type ErrorDTO = {
+    /**
+     * HTTP status code of the error
+     */
+    status: number;
+    /**
+     * Date and time when the error occurred
+     */
+    timestamp: string;
+    /**
+     * Indicates if the operation was successful (always false in case of error)
+     */
+    success: boolean;
+    /**
+     * Descriptive error message
+     */
+    message: string;
+};
+
+/**
  * Arbitrary JSON content
  */
 export type JsonNode = string | number | boolean | null | JsonNode[] | { [key: string]: JsonNode };
@@ -127,8 +149,8 @@ export type PostDTO = {
 export type PagePostDetails = {
     totalElements?: number;
     totalPages?: number;
-    numberOfElements?: number;
     pageable?: PageableObject;
+    numberOfElements?: number;
     first?: boolean;
     last?: boolean;
     size?: number;
@@ -222,6 +244,15 @@ export type GetUserFilteredPostsData = {
     url: '/api/v1/post';
 };
 
+export type GetUserFilteredPostsErrors = {
+    /**
+     * Internal Server Error
+     */
+    500: ErrorDTO;
+};
+
+export type GetUserFilteredPostsError = GetUserFilteredPostsErrors[keyof GetUserFilteredPostsErrors];
+
 export type GetUserFilteredPostsResponses = {
     /**
      * Successfully retrieved user's filtered posts.
@@ -237,6 +268,15 @@ export type CreatePostData = {
     query?: never;
     url: '/api/v1/post';
 };
+
+export type CreatePostErrors = {
+    /**
+     * Internal Server Error
+     */
+    500: ErrorDTO;
+};
+
+export type CreatePostError = CreatePostErrors[keyof CreatePostErrors];
 
 export type CreatePostResponses = {
     /**
@@ -259,6 +299,10 @@ export type UpdatePostErrors = {
      * Post not found.
      */
     404: PostDTO;
+    /**
+     * Internal Server Error
+     */
+    500: ErrorDTO;
 };
 
 export type UpdatePostError = UpdatePostErrors[keyof UpdatePostErrors];
@@ -302,6 +346,10 @@ export type UploadMediaErrors = {
      * Post not found.
      */
     404: string;
+    /**
+     * Internal Server Error
+     */
+    500: ErrorDTO;
 };
 
 export type UploadMediaError = UploadMediaErrors[keyof UploadMediaErrors];
@@ -329,6 +377,10 @@ export type GetPostByIdErrors = {
      * Post not found.
      */
     404: PostDTO;
+    /**
+     * Internal Server Error
+     */
+    500: ErrorDTO;
 };
 
 export type GetPostByIdError = GetPostByIdErrors[keyof GetPostByIdErrors];
@@ -357,6 +409,15 @@ export type GetFilteredPostsData = {
     url: '/api/v1/post/public';
 };
 
+export type GetFilteredPostsErrors = {
+    /**
+     * Internal Server Error
+     */
+    500: ErrorDTO;
+};
+
+export type GetFilteredPostsError = GetFilteredPostsErrors[keyof GetFilteredPostsErrors];
+
 export type GetFilteredPostsResponses = {
     /**
      * Successfully retrieved filtered public posts.
@@ -380,6 +441,10 @@ export type GetPostBySlugErrors = {
      * Post not found.
      */
     404: PostDTO;
+    /**
+     * Internal Server Error
+     */
+    500: ErrorDTO;
 };
 
 export type GetPostBySlugError = GetPostBySlugErrors[keyof GetPostBySlugErrors];
@@ -400,6 +465,15 @@ export type GetTagsData = {
     url: '/api/v1/post/public/tag';
 };
 
+export type GetTagsErrors = {
+    /**
+     * Internal Server Error
+     */
+    500: ErrorDTO;
+};
+
+export type GetTagsError = GetTagsErrors[keyof GetTagsErrors];
+
 export type GetTagsResponses = {
     /**
      * Successfully retrieved the list of tags.
@@ -415,6 +489,15 @@ export type GetSectionsData = {
     query?: never;
     url: '/api/v1/post/public/section';
 };
+
+export type GetSectionsErrors = {
+    /**
+     * Internal Server Error
+     */
+    500: ErrorDTO;
+};
+
+export type GetSectionsError = GetSectionsErrors[keyof GetSectionsErrors];
 
 export type GetSectionsResponses = {
     /**
@@ -439,7 +522,13 @@ export type PurgePostErrors = {
      * Post not found.
      */
     404: unknown;
+    /**
+     * Internal Server Error
+     */
+    500: ErrorDTO;
 };
+
+export type PurgePostError = PurgePostErrors[keyof PurgePostErrors];
 
 export type PurgePostResponses = {
     /**
@@ -477,7 +566,13 @@ export type DeleteMediaErrors = {
      * Post or file not found.
      */
     404: unknown;
+    /**
+     * Internal Server Error
+     */
+    500: ErrorDTO;
 };
+
+export type DeleteMediaError = DeleteMediaErrors[keyof DeleteMediaErrors];
 
 export type DeleteMediaResponses = {
     /**
