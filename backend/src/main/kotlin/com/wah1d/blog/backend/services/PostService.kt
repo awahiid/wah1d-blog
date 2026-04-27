@@ -4,8 +4,6 @@ import com.wah1d.blog.backend.dtos.posts.PostDTO
 import com.wah1d.blog.backend.dtos.posts.PostDetails
 import com.wah1d.blog.backend.dtos.posts.PostFilterParams
 import com.wah1d.blog.backend.dtos.posts.UpdatePostReq
-import com.wah1d.blog.backend.dtos.sections.SectionDetails
-import com.wah1d.blog.backend.dtos.tags.TagDetails
 import com.wah1d.blog.backend.entities.Post
 import com.wah1d.blog.backend.extensions.toDTO
 import com.wah1d.blog.backend.extensions.toDetails
@@ -16,6 +14,8 @@ import com.wah1d.blog.backend.repositories.QPostRepository
 import com.wah1d.blog.backend.repositories.SectionRepository
 import com.wah1d.blog.backend.repositories.TagRepository
 import com.wah1d.blog.backend.utils.generateSlug
+import com.wah1d.blog.backend.exceptions.NotFoundException
+import com.wah1d.blog.backend.exceptions.BadRequestException
 import org.springframework.data.domain.Page
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -42,14 +42,14 @@ class PostService(
     
     fun getPostById(id: UUID): PostDTO {
         val post = postRepository.findById(id)
-            ?: throw NoSuchElementException("Post not found with id: $id")
+            ?: throw NotFoundException("Post not found with id: $id")
 
         return postToDTO(post)
     }
 
     fun getPostBySlug(slug: String): PostDTO {
         val post = postRepository.findBySlug(slug)
-            ?: throw NoSuchElementException("Post not found with slug: $slug")
+            ?: throw NotFoundException("Post not found with slug: $slug")
 
         return postToDTO(post)
     }
@@ -65,7 +65,7 @@ class PostService(
     @Transactional
     fun updatePost(req: UpdatePostReq): PostDTO {
         val post = postRepository.findById(req.id)
-            ?: throw NoSuchElementException("Post not found with id: ${req.id}")
+            ?: throw NotFoundException("Post not found with id: ${req.id}")
 
         req.title?.let {
             post.title = it
@@ -75,11 +75,13 @@ class PostService(
         req.slug?.let { post.slug = it }
 
         if (req.published == true) {
-            require(!post.slug.isNullOrBlank()) { "Slug cannot be null or blank when publishing" }
+            if (post.slug.isNullOrBlank()) {
+                throw BadRequestException("Slug cannot be null or blank when publishing")
+            }
 
             val existing = postRepository.findBySlugAndPublishedIsTrue(post.slug!!)
             if (existing != null && existing.id != post.id) {
-                throw IllegalArgumentException("Slug already used by another published post")
+                throw BadRequestException("Slug already used by another published post")
             }
         }
 
@@ -89,7 +91,7 @@ class PostService(
                 post.section = null
             } else {
                 val sec = sectionRepository.findByName(section)
-                    ?: throw NoSuchElementException("Section not found with name: $section")
+                    ?: throw NotFoundException("Section not found with name: $section")
                 post.section = sec
             }
         }
@@ -113,7 +115,7 @@ class PostService(
 
     fun purgePost(id: UUID) {
         val post = postRepository.findById(id)
-            ?: throw NoSuchElementException("Post not found with id: $id")
+            ?: throw NotFoundException("Post not found with id: $id")
 
         postRepository.delete(post)
     }

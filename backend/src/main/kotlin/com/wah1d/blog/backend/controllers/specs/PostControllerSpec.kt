@@ -10,8 +10,6 @@ import com.wah1d.blog.backend.dtos.posts.PostDTO
 import com.wah1d.blog.backend.dtos.posts.PostDetails
 import com.wah1d.blog.backend.dtos.posts.PostFilterParams
 import com.wah1d.blog.backend.dtos.posts.UpdatePostReq
-import com.wah1d.blog.backend.dtos.sections.SectionDetails
-import com.wah1d.blog.backend.dtos.tags.TagDetails
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
@@ -35,7 +33,6 @@ interface PostControllerSpec {
     )
     @GetMapping("/public/section")
     fun getSections(): ResponseEntity<List<String>>
-
 
     @Operation(
         summary = "Get all tags",
