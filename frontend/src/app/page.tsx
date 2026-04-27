@@ -1,6 +1,5 @@
 import "@/styles/global.css";
 import React, {Suspense} from "react";
-import {HomeToolbarSection} from "@/components/home/HomeToolbarSection";
 import {HomeHeroFallback, HomeHeroSection} from "@/components/home/HomeHeroSection";
 import {TagsContainerFallback, TagsSection} from "@/components/home/TagsSection";
 import {PostListFallback, PostListSection} from "@/components/home/PostListSection";
@@ -13,9 +12,7 @@ export default async function HomePage() {
                 <HomeHeroSection/>
             </Suspense>
             <main className="w-full flex flex-col relative">
-                <Suspense fallback={<HomeToolbar sections={[]}/>}>
-                    <HomeToolbarSection/>
-                </Suspense>
+                <HomeToolbar/>
                 <Suspense fallback={<TagsContainerFallback/>}>
                     <TagsSection/>
                 </Suspense>
