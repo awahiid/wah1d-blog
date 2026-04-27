@@ -29,17 +29,21 @@ class PostService(
     private val tagRepository: TagRepository,
     private val qpostRepository: QPostRepository,
 )  {
+    @Transactional
     fun getSections(): List<String> =
         sectionRepository.findAll().map { it.name }
 
+    @Transactional
     fun getTags(): List<String> =
         tagRepository.findAll().map { it.name }
 
+    @Transactional
     fun createPost(): PostDTO {
         val post = postRepository.save(Post())
         return post.toDTO(emptySet(), emptyList())
     }
-    
+
+    @Transactional
     fun getPostById(id: UUID): PostDTO {
         val post = postRepository.findById(id)
             ?: throw NotFoundException("Post not found with id: $id")
@@ -47,17 +51,20 @@ class PostService(
         return postToDTO(post)
     }
 
+    @Transactional
     fun getPostBySlug(slug: String): PostDTO {
         val post = postRepository.findBySlug(slug)
             ?: throw NotFoundException("Post not found with slug: $slug")
 
         return postToDTO(post)
     }
-    
+
+    @Transactional
     fun getPublicFilteredPosts(params: PostFilterParams): Page<PostDetails> {
         return qpostRepository.getFilteredPosts(params, published = true, deleted = false)
     }
-    
+
+    @Transactional
     fun getUserFilteredPosts(params: PostFilterParams, published: Boolean?, deleted: Boolean?): Page<PostDetails> {
         return qpostRepository.getFilteredPosts(params, published, deleted)
     }
@@ -113,6 +120,7 @@ class PostService(
         return postToDTO(postRepository.save(post))
     }
 
+    @Transactional
     fun purgePost(id: UUID) {
         val post = postRepository.findById(id)
             ?: throw NotFoundException("Post not found with id: $id")
@@ -120,6 +128,7 @@ class PostService(
         postRepository.delete(post)
     }
 
+    @Transactional
     private fun postToDTO(post: Post): PostDTO {
         val content = postBlockRepository.findPostBlockByPostId(post.id).map { it.toDTO() }
         val tags = tagRepository.findAllByPostsId(post.id).map { it.toDetails() }.toSet()
