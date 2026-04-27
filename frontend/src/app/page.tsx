@@ -4,6 +4,7 @@ import {HomeToolbarSection} from "@/components/home/HomeToolbarSection";
 import {HomeHeroFallback, HomeHeroSection} from "@/components/home/HomeHeroSection";
 import {TagsContainerFallback, TagsSection} from "@/components/home/TagsSection";
 import {PostListFallback, PostListSection} from "@/components/home/PostListSection";
+import HomeToolbar from "@/components/home/HomeToolbar";
 
 export default async function HomePage() {
     return (
@@ -12,7 +13,7 @@ export default async function HomePage() {
                 <HomeHeroSection/>
             </Suspense>
             <main className="w-full flex flex-col relative">
-                <Suspense>
+                <Suspense fallback={<HomeToolbar sections={[]}/>}>
                     <HomeToolbarSection/>
                 </Suspense>
                 <Suspense fallback={<TagsContainerFallback/>}>
