@@ -5,6 +5,7 @@ import Footer from "@/components/ui/Footer";
 import { Reddit_Sans } from "next/font/google";
 import React from 'react';
 import '@/lib/server.api.config'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: "WAH1D Blog.",
@@ -28,6 +29,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <SpeedInsights/>
       </body>
     </html>
   );
