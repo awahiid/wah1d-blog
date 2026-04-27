@@ -63,7 +63,7 @@ export default function HomeHero({post}: {post: PostDetails | undefined}) {
                 className="sm:gap-6 sm:hover:gap-9"
                 onClick={() => router.push(`/posts/${post.slug}`)}
             >
-              Leer más <MdArrowOutward />
+              Read more <MdArrowOutward />
             </Button>
           </div>
 
@@ -73,7 +73,7 @@ export default function HomeHero({post}: {post: PostDetails | undefined}) {
                   <motion.img
                       key={`prev-${prevCover}`}
                       src={createImageURL(post.id, prevCover)}
-                      alt="Portada anterior"
+                      alt="Previous cover"
                       className="absolute inset-0 w-full h-full object-cover border-neutral"
                       initial={{ scale: 1, opacity: 1 }}
                       exit={{ scale: 0.8, opacity: 0 }}
@@ -85,7 +85,7 @@ export default function HomeHero({post}: {post: PostDetails | undefined}) {
             <motion.img
                 key={`selected-${selectedCover}`}
                 src={createImageURL(post.id, selectedCover)}
-                alt="Portada actual"
+                alt="Actual cover"
                 className="absolute inset-0 w-full h-full object-cover border-neutral"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -94,7 +94,7 @@ export default function HomeHero({post}: {post: PostDetails | undefined}) {
 
             <MdArrowForward
                 onClick={handleCoverChange}
-                className="block sm:hidden active:scale-95 duration-75 absolute bottom-9 right-9 mix-blend-exclusion bg-white z-10 size-12"
+                className="block sm:hidden rounded-full active:scale-95 duration-75 absolute bottom-9 right-9 mix-blend-exclusion bg-white z-10 size-12"
             />
 
             <div className="hidden sm:flex absolute bottom-0 right-0 gap-9 p-9">
@@ -104,7 +104,7 @@ export default function HomeHero({post}: {post: PostDetails | undefined}) {
                       <motion.img
                           key={cover}
                           src={createImageURL(post.id, cover)}
-                          alt="Portada"
+                          alt="Cover"
                           onClick={() => handleCoverSelect(cover)}
                           className="h-20 w-20 object-cover cursor-pointer"
                           initial={{ scale: 0 }}

@@ -67,7 +67,7 @@ export default function CoverEditor() {
   };
 
   return (
-    <div className="size-full relative p-9 ">
+    <div className="size-full relative sm:p-9 h-96 sm:h-full">
       <ImageEditor
         index={selectedCover}
         width={800}
@@ -79,7 +79,7 @@ export default function CoverEditor() {
         onDelete={onDelete}
         className={cn(editable ? "hover:outline outline-1" : "" )}
       />
-      <div className={"absolute bottom-20 right-20 flex gap-9"}>
+      <div className={"absolute sm:bottom-20 sm:right-20 bottom-9 right-9 flex gap-9"}>
         {coverState.map((cover, index) => {
           if (index != selectedCover) {
             return (

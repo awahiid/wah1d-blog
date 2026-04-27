@@ -2,7 +2,7 @@
 
 import { useMousePosition } from "@/utils/useMousePosition";
 import { cn } from "@/utils/cn";
-import React, { useState } from "react";
+import React from "react";
 
 type CursorProps = {
   children?: React.ReactNode;

@@ -19,11 +19,11 @@ export default function PostRow({ post }: PostProps) {
           <div className={'max-w-72 flex flex-row-reverse gap-9 items-center'}>
             <PostRowCover urls={post.covers.map(cover => createImageURL(post.id, cover))}/>
           </div>
-          <div className={'flex flex-col w-72'}>
-            <h2 className={'z-10 text-3xl font-semibold h-full bg-none bg-clip-text pointer-events-none'}>
+          <div className={'flex flex-col w-72 min-h-0'}>
+            <h2 className={'z-10 text-3xl font-semibold h-fit bg-none bg-clip-text pointer-events-none'}>
               {post.title}
             </h2>
-            <p className={'overflow-hidden max-w-72 h-fit overflow-ellipsis'}>{post.description}</p>
+            <p className={'break-words mt-auto leading-6 line-clamp-4'}>{post.description}</p>
           </div>
           <div className={'flex flex-col h-full justify-end gap-9 w-72 items-end '}>
 
@@ -41,39 +41,27 @@ export default function PostRow({ post }: PostProps) {
         </div>
 
         {/*Para moviles */}
-        <div
-            className={
-              'sm:hidden  relative w-full h-fit flex flex-col border-b-2 border-neutral'
-            }
-        >
+        <div className={'sm:hidden relative w-full h-fit flex flex-col border-b-2 border-neutral'} onClick={() => router.push(`posts/${post.slug}`)}>
           <img
               src={createImageURL(post.id, post.covers[0])}
               alt={'Cover post'}
               className={cn(
-                  'max-h-36 w-full object-cover object-center duration-200 cursor-pointer ease-in-out',
+                  'h-64 w-full object-cover object-center duration-200 cursor-pointer ease-in-out',
               )}
           />
-          <p className={'hidden absolute bg-white text-sm top-9 left-9 p-3'}>
-            Diario de desarrollo <br />
-            {formatDate(new Date(post.createdAt))}
-          </p>
           <div className={'flex flex-col gap-6 p-9'}>
+            {formatDate(new Date(post.createdAt))}
             <div className={'flex justify-between items-baseline'}>
-              <h2
-                  className={
-                    'flex justify justify-between text-2xl max-w-full font-semibold z-10 bg-none bg-clip-text pointer-events-none'
-                  }
-              >
+              <h2 className={ 'flex justify justify-between text-2xl max-w-full font-semibold z-10 bg-none bg-clip-text pointer-events-none'}>
                 {post.title}
               </h2>
-              <Button
-                  className={'size-fit rounded-none p-0'}
-                  onClick={() => router.push(`posts/${post.slug}`)}
-              >
-                <MdArrowOutward className={'pointer-events-none size-9'} />
-              </Button>
+              {/*<Button*/}
+              {/*    className={'size-fit p-0'}*/}
+              {/*>*/}
+              {/*  Read <MdArrowOutward className={'pointer-events-none size-9'} />*/}
+              {/*</Button>*/}
             </div>
-            <p className={'overflow-hidden w-full'}>{post.description}</p>
+            <p className={'line-clamp-6'}>{post.description}</p>
           </div>
         </div>
       </div>

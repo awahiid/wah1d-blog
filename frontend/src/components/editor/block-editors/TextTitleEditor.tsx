@@ -35,7 +35,7 @@ export function TextTitleEditor({ content, editable, onEdit }: TitleEditorProps)
   titleEditor?.setOptions({ editable });
 
   return (
-    <div className={"w-[760px] h-fit flex flex-col gap-4"}>
+    <div className={"sm:w-[760px] w-screen px-9 sm:p-0  h-fit flex flex-col gap-4"}>
       <EditorContent editor={titleEditor} />
     </div>
   );

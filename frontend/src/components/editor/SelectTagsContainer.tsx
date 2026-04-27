@@ -18,7 +18,7 @@ function RemovableTag({ tag, onClick }: RemovableTagProps) {
   return (
     <Button
       className={cn(
-        "bg-black text-white h-fit w-fit flex items-center justify-center pl-4 pr-4 pt-2 pb-2 rounded-full gap-1 cursor-pointer select-none",
+        "bg-black text-white h-fit text-nowrap flex-nowrap flex-shrink-0 w-fit flex items-center justify-center pl-4 pr-4 pt-2 pb-2 rounded-full gap-1 cursor-pointer select-none",
         editable ? "hover:bg-red-500" : "",
       )}
       onClick={onClick}
@@ -56,34 +56,36 @@ export default function SelectTagsContainer() {
 
   const triggerButton = (
     <Button
-      className={"rounded-full border-none text-white font-normal h-fit w-fit gap-2 pt-2 pb-2 pl-4 pr-4"}
+      className={"rounded-full border-none text-white font-normal h-fit w-fit gap-2 py-2 px-4"}
       cursor={false}
     >
       <IoMdAdd />
-      Añadir etiqueta
+      Add tag
     </Button>
   );
 
   return (
-    <div className="w-full max-w-screen-xl h-20 text-nowrap flex items-center justify-center border-b-2 border-neutral gap-2">
-      {!loading && editable && (
-        <Menu label="" triggerButton={triggerButton} className={"min-w-52"}>
-          {tags!.map((tag, index) => (
-            <MenuItem
-              label={tag}
+      <div className="overflow-x-auto w-full max-w-screen-xl px-9 sm:px-0 mx-auto h-20 border-b-2 border-neutral gap-3">
+        <div className={'flex items-center size-full w-fit mx-auto gap-3'}>
+          {!loading && editable && (
+            <Menu label="" triggerButton={triggerButton} className={"min-w-40 w-fit"}>
+              {tags!.map((tag, index) => (
+                <MenuItem
+                  label={tag}
+                  key={index}
+                  onClick={() => addTag(tag)}
+                />
+              ))}
+            </Menu>
+          )}
+          {selectedTags.map((tag, index) => (
+            <RemovableTag
               key={index}
-              onClick={() => addTag(tag)}
+              tag={tag}
+              onClick={() => handleTagClick(index)}
             />
-          ))}
-        </Menu>
-      )}
-      {selectedTags.map((tag, index) => (
-        <RemovableTag
-          key={index}
-          tag={tag}
-          onClick={() => handleTagClick(index)}
-        />
-      ))}
+        ))}
+        </div>
     </div>
   );
 }

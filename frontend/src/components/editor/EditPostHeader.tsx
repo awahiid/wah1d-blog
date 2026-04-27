@@ -18,7 +18,7 @@ export default function EditPostHeader() {
   const editable = usePostStore(state => state.editable);
 
   return (
-    <header className={ "w-full max-w-screen-xl max-h-[660px] h-[68vh] pr-9 pl-9 flex border-b-2 border-neutral"}>
+    <header className={"flew-full max-w-screen-xl max-h-[660px] h-[68vh] sm:px-9 flex flex-col-reverse sm:flex-row w-full overflow-hidden border-b-2 border-neutral"}>
       <div className={"w-full h-full p-9 flex flex-col gap-9 justify-center relative"}>
           <SectionEditor content={section} editable={editable} onEdit={setSection}/>
           <DateEditor content={formatDate(new Date(date))} editable={editable} onEdit={setDate}/>

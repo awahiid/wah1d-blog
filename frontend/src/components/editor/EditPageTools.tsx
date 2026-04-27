@@ -1,90 +1,38 @@
 import React, { useState } from 'react';
 import usePostStore from "@/stores/usePostStore";
-import { IoIosArrowDown } from "react-icons/io";
-import { motion, useAnimation, Variants } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import LightButton from "@/components/ui/LightButton";
-import { MdEdit, MdPreview, MdSave, MdSend } from "react-icons/md";
 import TypeWriterText from '@/components/animations/TypeWriterText';
 import Button from '@/components/ui/Button';
 import { cn } from '@/utils/cn';
-
-const toolsMenuVariants = {
-  closed: { width: "fit-content" },
-  opened: { width: "100%", maxWidth: "1024px" },
-};
-
-const buttonsVariants = {
-  closed: { opacity: 0, display: "none" },
-  opened: { opacity: 1, display: "flex" },
-};
-
-const triggerVariants = {
-  opened: { transform: "rotate(-90deg)" },
-  closed: { transform: "rotate(90deg)" },
-};
+import { RiEditFill } from "react-icons/ri";
+import { IoSend } from "react-icons/io5";
+import { MdOutlineDownloadDone } from "react-icons/md";
+import { AiOutlineEye } from "react-icons/ai";
 
 export default function EditPageTools() {
   const editable = usePostStore(state => state.editable)
   const setEditable = usePostStore(state => state.setEditable)
 
-  const [menuOpened, setMenuOpened] = useState(true);
-  const buttonsControls = useAnimation();
-  const menuControls = useAnimation();
-
-
-  const toggleMenu = () => {
-    if (menuOpened) {
-      buttonsControls.start("closed").then(() => {
-        menuControls.start("closed");
-        setMenuOpened(false);
-      });
-    } else {
-      menuControls.start("opened").then(() => {
-        buttonsControls.start("opened");
-        setMenuOpened(true);
-      });
-    }
-  };
-
   return (
-    <motion.div
-      className="w-full max-w-screen-xl fixed bottom-0 mb-2 bg-neutral bg-opacity-50 border-neutral rounded-full overflow-hidden backdrop-blur-md"
-      variants={toolsMenuVariants}
-      animate={menuControls}
-    >
-
+    <div className="mx-9 max-w-screen-xl w-fit fixed bottom-0 mb-2 bg-neutral bg-opacity-50 border-neutral rounded-full overflow-hidden backdrop-blur-md">
       <div className="p-2 h-full flex gap-2 justify-between items-center backdrop-blur-lg">
-        <LightButton
-          onClick={toggleMenu}
-          className="h-fit w-fit p-3 gap-2 rounded-full hover:bg-black hover:text-white"
-        >
-          <motion.div
-            variants={triggerVariants}
-            animate={menuOpened ? "opened" : "closed"}
-          >
-            <IoIosArrowDown />
-          </motion.div>
-        </LightButton>
-
-        <motion.div
+        <div
           className="flex items-center justify-center gap-2"
-          variants={buttonsVariants}
-          animate={buttonsControls}
-          initial={menuOpened ? "opened" : "closed"}
         >
           <LightButton
             onClick={() => setEditable(!editable)}
             className="h-fit w-fit gap-4 p-2 px-4 rounded-full hover:bg-black hover:text-white"
           >
-            {editable ? <MdPreview /> : <MdEdit />}
-            {editable ? "Previsualizar" : "Editar"}
+            {editable ? <AiOutlineEye /> : <RiEditFill />}
+            {editable ? "Preview" : "Edit"}
           </LightButton>
 
           <UpdatePostButton/>
           <PublishPostButton/>
-        </motion.div>
+        </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -116,9 +64,9 @@ function UpdatePostButton() {
         updating ? 'active:scale-1' : ''
       )}
     >
-      <MdSave />
-      {!updating && <>Guardar</>}
-      {updating && <TypeWriterText text="Guardando" className="text-md" />}
+      <MdOutlineDownloadDone  />
+      {!updating && <>Save</>}
+      {updating && <TypeWriterText text="Saving" className="text-md" />}
     </LightButton>
   );
 }
@@ -165,7 +113,7 @@ function PublishPostButton(){
   return (
     <Button
       onClick={handlePublish}
-      className={cn(`h-fit relative w-fit gap-4 p-2 px-4 rounded-full ${bgColor} transition-colors`, publishing ? 'active:scale-1' : '')}
+      className={cn(`text-md h-fit relative w-fit gap-4 p-2 px-4 rounded-full ${bgColor} transition-colors`, publishing ? 'active:scale-1' : '')}
       cursor={false}
     >
       <motion.div
@@ -173,10 +121,10 @@ function PublishPostButton(){
         variants={publishPostVariants}
         animate={publishing ? 'published' : 'initial'}
       >
-        <MdSend />
+        <IoSend />
       </motion.div>
-      {!publishing && <>Subir post</>}
-      {publishing && <>Subiendo</>}
+      {!publishing && <>Upload</>}
+      {publishing && <>Uploading</>}
     </Button>
   )
 }
