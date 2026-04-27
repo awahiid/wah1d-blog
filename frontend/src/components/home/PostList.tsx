@@ -6,7 +6,7 @@ import {PostDetails} from "@/api";
 import useHomeStore from "@/stores/useHomeStore";
 import usePostStore from "@/stores/usePostStore";
 import useSearchStore from "@/stores/useSearchStore";
-import TypeWriterText from "@/components/animations/TypeWriterText";
+import TypeWriterText from "@/components/motions/TypeWriterText";
 
 type PostListProps = {
   posts: PostDetails[];

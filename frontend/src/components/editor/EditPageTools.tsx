@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import usePostStore from "@/stores/usePostStore";
 import { motion, Variants } from 'framer-motion';
 import LightButton from "@/components/ui/LightButton";
-import TypeWriterText from '@/components/animations/TypeWriterText';
+import TypeWriterText from '@/components/motions/TypeWriterText';
 import Button from '@/components/ui/Button';
 import { cn } from '@/utils/cn';
 import { RiEditFill } from "react-icons/ri";

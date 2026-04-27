@@ -3,7 +3,7 @@
 import { HTMLMotionProps } from "framer-motion";
 import React, { useState } from "react";
 import { cn } from "@/utils/cn";
-import Cursor from "@/components/animations/Cursor";
+import Cursor from "@/components/motions/Cursor";
 
 type ButtonProps = HTMLMotionProps<"button"> &
   React.HTMLProps<HTMLButtonElement> & {
