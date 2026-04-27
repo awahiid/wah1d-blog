@@ -1,19 +1,27 @@
 "use client";
 
 import "@/styles/global.css";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import { useParams } from "next/navigation";
-import PostTransition from "@/components/post/PostTransition";
 import EditPostHeader from "@/components/editor/EditPostHeader";
 import SelectTagsContainer from "@/components/editor/SelectTagsContainer";
 import PostContent from "@/components/editor/PostContent";
 import usePostStore from "@/stores/usePostStore";
 import {PostControllerService} from "@/api";
+import PixelatedCover from "@/components/motions/PixelatedCover";
 
 export default function PostPage() {
   const [loading, setLoading] = useState(true);
   const { slug } = useParams<{ slug: string }>();
   const { initialize } = usePostStore();
+  const [trigger, setTrigger] = useState(false)
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!loading) {
+      setTrigger(true);
+    }
+  }, [loading]);
 
   useEffect(() => {
     PostControllerService.getPostBySlug({ path: {slug} }).then(async (post) => {
@@ -25,18 +33,19 @@ export default function PostPage() {
     });
   }, [initialize, slug]);
 
-  return (
-    <div className="w-full h-fit overflow-hidden flex flex-col items-center">
-      <PostTransition></PostTransition>
-      {!loading && (
-        <>
-          <EditPostHeader />
-          <SelectTagsContainer />
-          <main className={"w-full max-w-screen-xl flex flex-col justify-center pl-9 pr-9"}>
-            <PostContent />
-          </main>
-        </>
-      )}
-    </div>
-  );
+  return <>
+      <PixelatedCover start={trigger}/>
+      <div className="w-full overflow-hidden flex flex-col items-center relative">
+        {!loading && (
+          <>
+            <EditPostHeader />
+            <SelectTagsContainer />
+            <main   ref={ref} className={"w-full max-w-screen-xl flex flex-col justify-center pl-9 pr-9"}>
+              <PostContent />
+            </main>
+          </>
+        )}
+        { loading &&  <div className={'h-screen'}></div> }
+      </div>
+    </>
 }

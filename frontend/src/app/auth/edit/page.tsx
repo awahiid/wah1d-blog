@@ -3,7 +3,7 @@
 import usePostStore from "@/stores/usePostStore";
 import {useRouter} from "next/navigation";
 import React, {useEffect} from "react";
-import TypeWriterText from "@/components/animations/TypeWriterText";
+import TypeWriterText from "@/components/motions/TypeWriterText";
 
 export default function RedirectEdit() {
   const { createPost } = usePostStore();

@@ -7,10 +7,11 @@ import HomeToolbar from "@/components/home/HomeToolbar";
 
 export default async function HomePage() {
     return (
-        <>
+        <div className={'overflow-y-hidden w-screen  relative'}>
             <Suspense fallback={<HomeHeroFallback text={"Loading most recent post"} className={'animate-pulse'}/>}>
                 <HomeHeroSection/>
             </Suspense>
+
             <main className="w-full flex flex-col relative">
                 <HomeToolbar/>
                 <Suspense fallback={<TagsContainerFallback/>}>
@@ -23,7 +24,7 @@ export default async function HomePage() {
                     <p className="h-fit w-full max-w-7xl flex justify-end">Made by Abdel Wahed</p>
                 </footer>
             </main>
-        </>
+        </div>
     );
 }
 
