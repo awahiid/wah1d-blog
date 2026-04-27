@@ -4,21 +4,25 @@ import {useEffect, useState} from "react";
 import SectionButton from "@/components/home/SectionButton";
 import useSearchStore from "@/stores/useSearchStore";
 import {SearchBar} from "@/components/home/SearchBar";
+import {PostControllerService} from "@/api";
 
-type HomeToolbarProps = {
-    sections: string[];
-};
-
-export default function HomeToolbar({ sections }: HomeToolbarProps) {
-    sections = ['Everything', ...sections];
+export default function HomeToolbar() {
     const [selectedSection, setSelectedSection] = useState<string>('Everything');
+    const [sections, setSections] = useState<string[]>([])
+    const fullSections = ["Everything", ...sections];
     const setSearchSection = useSearchStore((state) => state.setSection);
     const search = useSearchStore((state) => state.search);
 
     useEffect(() => {
         setSearchSection(selectedSection === "Everything" ? undefined : selectedSection);
         search();
-    }, [search, selectedSection, sections, setSearchSection]);
+    }, [selectedSection, setSearchSection, search]);
+
+    useEffect(() => {
+        PostControllerService.getSections().then((response) => {
+            setSections(response.data || []);
+        });
+    }, []);
 
     return (
         <div className="flex flex-col items-center">
@@ -27,7 +31,7 @@ export default function HomeToolbar({ sections }: HomeToolbarProps) {
             </div>
 
             <div className="max-w-screen-2xl hidden sm:flex sm:border-t-2 w-full border-t-0 h-[4.5rem] text-nowrap border-2 border-x-0 border-neutral sm:px-9">
-                {sections.map((section, index) => (
+                {fullSections.map((section, index) => (
                     <SectionButton
                         key={section}
                         text={section}
