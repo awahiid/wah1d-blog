@@ -34,7 +34,7 @@ export default function Edit() {
           <motion.div className={"absolute z-10 size-full bg-white"} animate={{opacity: 0, visibility: "hidden"}}></motion.div>
           <EditPostHeader />
           <SelectTagsContainer />
-          <main className={ "w-full max-w-screen-xl flex flex-col justify-center pl-9 pr-9"}>
+          <main className={ "w-full overflow-x-hidden max-w-screen-xl flex flex-col justify-center pl-9 pr-9"}>
             <PostContent />
           </main>
           <EditPageTools />
