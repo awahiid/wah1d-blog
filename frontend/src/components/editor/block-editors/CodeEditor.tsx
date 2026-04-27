@@ -56,7 +56,7 @@ export default function CodeEditor({ content, editable, onEdit }: CodeEditorProp
   languageEditor?.setOptions({ editable });
 
   return (
-    <div className={'min-w-[760px] pt-2 pb-2'}>
+    <div className={'w-screen px-9 sm:w-full sm:p-0 sm:min-w-[760px] pt-2 pb-2'}>
       <div className="w-full flex justify-between p-4 pb-2 text-black border-neutral border border-b-0 rounded-t-md">
         <EditorContent
           className={'min-w-20'}

@@ -43,11 +43,11 @@ export default function ImagesEditor({ content, editable, onEdit }: ImagesEditor
   };
 
   return (
-    <div className={"w-max flex-row flex justify-center gap-9 items-center overflow-visible p-9"}>
+    <div className={"flex flex-col max-w-screen sm:w-max sm:flex-row  justify-center gap-9 items-center overflow-visible p-9"}>
       {images.map((image, index) => (
         <div
           key={image.id}
-          className={"w-fit relative h-fit  flex flex-col items-center justify-center gap-4"}
+          className={"w-fit relative h-fit flex flex-col items-center justify-center gap-4"}
         >
           <ImageEditor
             addImage={() => addImage(index)}

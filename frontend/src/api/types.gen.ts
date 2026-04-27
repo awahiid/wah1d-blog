@@ -128,9 +128,9 @@ export type PagePostDetails = {
     totalElements?: number;
     totalPages?: number;
     numberOfElements?: number;
+    pageable?: PageableObject;
     first?: boolean;
     last?: boolean;
-    pageable?: PageableObject;
     size?: number;
     content?: Array<PostDetails>;
     number?: number;
@@ -139,10 +139,10 @@ export type PagePostDetails = {
 };
 
 export type PageableObject = {
+    unpaged?: boolean;
+    pageNumber?: number;
     paged?: boolean;
     pageSize?: number;
-    pageNumber?: number;
-    unpaged?: boolean;
     offset?: number;
     sort?: Array<SortObject>;
 };

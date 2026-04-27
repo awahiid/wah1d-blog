@@ -32,7 +32,7 @@ export function TextEditor({ content, editable, onEdit }: TextEditorProps) {
   }, [editable, textEditor]);
 
   return (
-    <div className="w-[760px] leading-7 font-light text-lg h-full">
+    <div className="sm:w-[760px] w-screen px-9 sm:p-0 leading-7 font-light text-lg h-full">
       <EditorContent editor={textEditor} />
     </div>
   );

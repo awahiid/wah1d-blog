@@ -1,5 +1,5 @@
 import usePostStore from "@/stores/usePostStore";
-import React, { useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {ResizableBox, ResizeCallbackData} from "react-resizable";
 import { IoIosImage, IoMdAdd, IoMdClose } from "react-icons/io";
 import { ImageData } from "@/lib/blocks/ImagesBlock";
@@ -14,6 +14,16 @@ type ImageEditorProps = {
   addImage: () => void;
   removeImage: () => void;
   editable?: boolean;
+};
+
+const getMaxConstraints = () => {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    return [
+        Math.min(640, w * 0.6),
+        Math.min(500, h * 0.8),
+    ] as [number, number];
 };
 
 export default function ImageEditor({
@@ -47,6 +57,14 @@ export default function ImageEditor({
     image.height = size.height;
   };
 
+  const [max, setMax] = useState(getMaxConstraints());
+
+  useEffect(() => {
+    const handle = () => setMax(getMaxConstraints());
+    window.addEventListener("resize", handle);
+    return () => window.removeEventListener("resize", handle);
+  }, []);
+
   return (
     <div className={"w-fit h-fit flex flex-col items-center justify-center gap-2"}>
       <ResizableBox
@@ -54,8 +72,8 @@ export default function ImageEditor({
         axis={"both"}
         width={image.width}
         height={image.height}
+        maxConstraints={max}
         minConstraints={[300, 100]}
-        maxConstraints={[640, 500]}
         onResize={handleResize}
         className={"h-full w-72 relative flex justify-center items-center"}
       >
