@@ -1,7 +1,7 @@
 import Link from "next/link";
 import "@/styles/global.css";
 import BlogLogo from "@/assets/brand/wah1d-blog-logo.svg";
-import BlogLogoSM from "@/assets/brand/w1-icon.svg";
+import BlogLogoSM from "@/assets/brand/w1-icon-primary.svg";
 import {MdMenu} from "react-icons/md";
 import {createClient} from "@/lib/supabase/server";
 import {NavButton} from "@/components/ui/NavButton";
@@ -18,7 +18,7 @@ export default async function Navbar() {
         </Link>
 
         <Link href={"/"} className={"sm:hidden h-full flex items-center"}>
-          <BlogLogoSM width={36} height={16}></BlogLogoSM>
+          <BlogLogoSM className={'size-9'} />
         </Link>
 
         <div className={"hidden lg:flex"}>

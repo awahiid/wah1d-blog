@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "WAH1D Blog.",
   description: "A developer blog.",
   authors: { name: "Abdel Wahed Mahfoud Mouhandizi" },
-  icons: "/icons/w1-icon.svg",
+  icons: "/icons/w1-icon-neutral.svg",
 };
 
 const reddit = Reddit_Sans({ subsets: ["latin-ext"] });
