@@ -1,2 +1,13 @@
-doppler secrets substitute infra/.env.tpl > infra/.env
-doppler secrets substitute src/main/resources/application-dev.properties.tpl > src/main/resources/application-dev.properties
+#!/usr/bin/env bash
+set -euo pipefail
+
+ENVIRONMENT="${1:-dev}"
+
+doppler secrets substitute \
+  --config "$ENVIRONMENT" \
+  infra/.env.tpl > infra/.env
+
+doppler secrets substitute \
+  --config "$ENVIRONMENT" \
+  src/main/resources/application-${ENVIRONMENT}.properties.tpl \
+  > src/main/resources/application-${ENVIRONMENT}.properties
