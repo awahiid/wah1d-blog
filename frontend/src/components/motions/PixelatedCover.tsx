@@ -5,19 +5,18 @@ import {motion} from "framer-motion";
 import {useEffect, useMemo, useState} from "react";
 import {useElementSize} from "@/hooks/use-element-size";
 
-const delay = 0.009
-
-export default function PixelatedCover({start}: {start: boolean}) {
+export default function PixelatedCover({start, duration}: {start: boolean, duration: number}) {
     const { ref, size } = useElementSize();
 
     const rows = 10;
     const cols = (!size.width || !size.height) ? 0 : Math.ceil(size.height / (size.width * 0.1));
+    const delay = duration / (rows * cols);
 
     const pixeles = useMemo(() => {
         const arr = Array.from({ length: rows * cols }, (_, i) => i);
         return shuffle(arr);
     }, [rows, cols, size]);
-
+    
     const [animationFinished, setAnimationFinished] = useState(false);
 
     useEffect(() => {
