@@ -34,7 +34,7 @@ export default function PostPage() {
   }, [initialize, slug]);
 
   return <>
-      <PixelatedCover start={trigger}/>
+      <PixelatedCover start={trigger} duration={1}/>
       <div className="w-full overflow-hidden flex flex-col items-center relative">
         {!loading && (
           <>
