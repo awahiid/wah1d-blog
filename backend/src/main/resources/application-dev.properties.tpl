@@ -22,8 +22,8 @@ spring.jpa.properties.hibernate.format_sql=true
 server.port={{.SERVER_PORT}}
 
 # Security
-spring.security.oauth2.resourceserver.jwt.issuer.uri={{.SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI}}
-spring.security.oauth2.resourceserver.jwt.jwk-set.uri={{.SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI}}
+spring.security.oauth2.resourceserver.jwt.issuer-uri={{.SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI}}
+spring.security.oauth2.resourceserver.jwt.jwk-set-uri={{.SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI}}
 
 openapi.server.url={{.OPENAPI_SERVER_URL}}
 supabase.url={{.SUPABASE_URL}}
