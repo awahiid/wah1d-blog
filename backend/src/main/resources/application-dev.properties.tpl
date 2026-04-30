@@ -6,6 +6,7 @@ spring.datasource.url={{.SPRING_DATASOURCE_URL}}
 spring.datasource.driver-class-name=org.postgresql.Driver
 spring.datasource.username={{.SPRING_DATASOURCE_USERNAME}}
 spring.datasource.password={{.SPRING_DATASOURCE_PASSWORD}}
+spring.datasource.hikari.data-source-properties.prepareThreshold=0
 
 # JPA / Hibernate
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
