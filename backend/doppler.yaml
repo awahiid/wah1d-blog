@@ -1,3 +1,2 @@
 setup:
   - project: w1-blog-backend
-    config: dev
