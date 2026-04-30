@@ -1,0 +1,43 @@
+# App
+spring.application.name=wah1d-blog-backend
+
+# PostgreSQL (Supabase)
+spring.datasource.url=${SPRING_DATASOURCE_URL}
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD}
+spring.datasource.hikari.data-source-properties.prepareThreshold=0
+
+# JPA / Hibernate
+spring.jpa.hibernate.ddl-auto=validate
+spring.sql.init.mode=never
+spring.jpa.defer-datasource-initialization=false
+
+# Logs (producción)
+spring.jpa.show-sql=false
+spring.jpa.properties.hibernate.format_sql=false
+logging.level.root=INFO
+logging.level.com.wah1d=DEBUG
+logging.level.org.springframework.web=INFO
+logging.level.org.hibernate=WARN
+
+server.error.include-message=always
+server.error.include-stacktrace=always
+
+# Server
+server.port=${PORT}
+
+# Security (Supabase Auth)
+spring.security.oauth2.resourceserver.jwt.issuer-uri=${SUPABASE_ISSUER_URI}
+spring.security.oauth2.resourceserver.jwt.jwk-set-uri=${SUPABASE_JWKS_URI}
+
+# Supabase
+supabase.url=${SUPABASE_URL}
+supabase.key=${SUPABASE_KEY}
+media.bucket=posts
+
+# OpenAPI
+openapi.server.url=${API_URL}
+
+# Env
+frontend.url=${FRONTEND_URL}
