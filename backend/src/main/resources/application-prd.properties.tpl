@@ -2,10 +2,10 @@
 spring.application.name=wah1d-blog-backend
 
 # PostgreSQL (Supabase)
-spring.datasource.url=${SPRING_DATASOURCE_URL}
+spring.datasource.url={{.SPRING_DATASOURCE_URL}}
 spring.datasource.driver-class-name=org.postgresql.Driver
-spring.datasource.username=${SPRING_DATASOURCE_USERNAME}
-spring.datasource.password=${SPRING_DATASOURCE_PASSWORD}
+spring.datasource.username={{.SPRING_DATASOURCE_USERNAME}}
+spring.datasource.password={{.SPRING_DATASOURCE_PASSWORD}}
 spring.datasource.hikari.data-source-properties.prepareThreshold=0
 
 # JPA / Hibernate
@@ -25,19 +25,19 @@ server.error.include-message=always
 server.error.include-stacktrace=always
 
 # Server
-server.port=${PORT}
+server.port={{.PORT}}
 
 # Security (Supabase Auth)
-spring.security.oauth2.resourceserver.jwt.issuer-uri=${SUPABASE_ISSUER_URI}
-spring.security.oauth2.resourceserver.jwt.jwk-set-uri=${SUPABASE_JWKS_URI}
+spring.security.oauth2.resourceserver.jwt.issuer-uri={{.SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI}}
+spring.security.oauth2.resourceserver.jwt.jwk-set-uri={{.SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI}}
 
 # Supabase
-supabase.url=${SUPABASE_URL}
-supabase.key=${SUPABASE_KEY}
-media.bucket=posts
+supabase.url={{.SUPABASE_URL}}
+supabase.key={{.SUPABASE_KEY}}
+media.bucket={{.MEDIA_BUCKET}}
 
 # OpenAPI
-openapi.server.url=${API_URL}
+openapi.server.url={{.API_URL}}
 
 # Env
-frontend.url=${FRONTEND_URL}
+frontend.url={{.FRONTEND_URL}}
