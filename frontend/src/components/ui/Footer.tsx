@@ -8,10 +8,8 @@ export default function Footer() {
         <div className="flex gap-9">
           <div className="flex flex-col w-fit space-y-2">
             <p className="text-lg text-nowrap">Socials</p>
-            <a className="text-sm h-6">GitHub</a>
-            <a className="text-sm h-6">LinkedIn</a>
-            <a className="text-sm h-6">Instagram</a>
-            <a className="text-sm h-6">X</a>
+            <a className="text-sm h-6" target={'_blank'} href={'https://github.com/awahiid/wah1d-blog'}>GitHub</a>
+            <a className="text-sm h-6" target={'_blank'} href={'https://www.linkedin.com/in/abdel-wahed-mahfoud-mouhandizi-60ba373a5/'}>LinkedIn</a>
           </div>
           <div className="flex flex-col w-fit space-y-2">
             <p className="text-lg m-0">More</p>
