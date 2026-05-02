@@ -6,6 +6,7 @@ import { Reddit_Sans } from "next/font/google";
 import React from 'react';
 import '@/lib/server.api.config'
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import {MenuMobile} from "@/components/ui/MenuMobile";
 
 export const metadata: Metadata = {
   title: "WAH1D Blog.",
@@ -30,6 +31,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <SpeedInsights/>
+        <MenuMobile/>
       </body>
     </html>
   );

@@ -2,9 +2,9 @@ import Link from "next/link";
 import "@/styles/global.css";
 import BlogLogo from "@/assets/brand/wah1d-blog-logo.svg";
 import BlogLogoSM from "@/assets/brand/w1-icon-primary.svg";
-import {MdMenu} from "react-icons/md";
 import {createClient} from "@/lib/supabase/server";
 import {NavButton} from "@/components/ui/NavButton";
+import {MenuButton} from "@/components/ui/MenuButton";
 
 export default async function Navbar() {
   const supabase = await createClient();
@@ -27,8 +27,10 @@ export default async function Navbar() {
           <NavButton page={"/about"} text={"About me"} />
           {user && <NavButton page={"/auth/signout"} text={"Sign out"}/>}
         </div>
-        <MdMenu className={"block sm:hidden size-9"}></MdMenu>
+
+        <MenuButton/>
       </div>
     </div>
   );
 }
+

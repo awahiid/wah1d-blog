@@ -11,7 +11,6 @@ export default async function HomePage() {
             <Suspense fallback={<HomeHeroFallback text={"Loading most recent post"} className={'animate-pulse'}/>}>
                 <HomeHeroSection/>
             </Suspense>
-
             <main className="w-full flex flex-col relative">
                 <HomeToolbar/>
                 <Suspense fallback={<TagsContainerFallback/>}>
